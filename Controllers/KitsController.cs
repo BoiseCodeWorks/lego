@@ -27,9 +27,9 @@ namespace Lego.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<KitPart> Get(int id)
         {
-            return "value";
+            return Ok(_repo.IDONTBELONGHERE());
         }
 
         // POST api/values

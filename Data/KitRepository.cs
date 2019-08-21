@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using Lego.Models;
@@ -47,6 +48,17 @@ namespace Lego.Data
       {
         throw new Exception("Delete Failed");
       }
+    }
+
+    public IEnumerable<KitPart> IDONTBELONGHERE()
+    {
+      var parts =_db.Query<KitPart>(@"
+      SELECT *, b.name AS brickName FROM kitbricks kb
+      JOIN bricks b ON b.id = kb.brickId
+      JOIN kits k ON k.id = kb.kitId
+      WHERE kb.kitId = 1;
+      ");
+      return parts;
     }
 
   }
